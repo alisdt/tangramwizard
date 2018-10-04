@@ -1,5 +1,12 @@
 # tangramwizard
 
+Requirements:
+
+* Python 2.7
+* Uses "start" (Windows), "play" (Linux), "afplay" (Mac OS X) to play sound.
+
+Usage: In main code directory, `python tw_main.py`
+
 A computerised version of the Barrier Task (Derksen et al., 2014).
 
 The program is designed to describe  a set of 12 tangram tasks to a participant, and instructs them to place the cards in a specific order. Up to four descriptions and provided for each card. The cards are described in a different order over the nine trials. There are two sets of trials each using a different set of 12 tangrams. Synthetic and natural speech descriptions are provided.
