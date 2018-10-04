@@ -1,0 +1,224 @@
+
+
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html lang="en">
+
+<head>
+ <meta http-equiv="Content-Type" content="text/html;charset=utf-8"> 
+ <!--- base href="http://www.cstr.inf.ed.ac.uk/" -->
+ <meta name="keywords" content="Research, speech recognition, speech recognition, speech processing, postgraduate degree, PhD, MSc, studentship, Festival,">
+ <meta name="generator" content="emacs">
+ <meta name="robots" content="index,follow">
+ <meta name="distribution" content="global">
+ <link rel="SHORTCUT ICON" href="/favicon.ico">
+ <link type="text/css" rel="stylesheet" href="/cstr.css">
+ <title>Festival Online Demo</title>
+</head>
+
+<body>
+<div id="titlebar">
+
+  <div id="cstr_logo">
+    <a href="/"><img src="/images/cstr3.png" height=80px alt="CSTR logo"></a>
+  </div>
+
+  <div id="cstr_title">
+   <img src="/images/cstr_title_grey.png" alt="The Centre for Speech Technology Research, The university of Edinburgh">
+  </div>
+
+  <div id="uoe_logo">
+    <a href="http://www.ed.ac.uk"><img src="/images/crest_grey.png" height=80px alt="University logo"></a>
+  </div>
+
+  <div id="menu_bar">
+    <div id="menu_item"><a href="/"><img src="/images/menu_home.png" alt="Home"></a></div>
+<div id="menu_item"><a href="/people/"><img src="/images/menu_people.png" alt="People"></a></div>
+    <div id="menu_item"><a href="/news/"><img src="/images/menu_news.png" alt="News"></a></div>
+    <div id="menu_item"><a href="/research/"><img src="/images/menu_research.png" alt="Research"></a></div>
+    <div id="menu_item"><a href="/publications/"><img src="/images/menu_publications.png" alt="Publications"></a></div>
+    <div id="menu_item"><a href="/opportunities/"><img src="/images/menu_opportunities.png" alt="Opportunities"></a></div>
+    <div id="menu_item"><a href="/downloads/"><img src="/images/menu_downloads.png" alt="Downloads"></a></div>
+    <div id="menu_item"><a href="/contact/"><img src="/images/menu_contact.png" alt="Contact"></a></div>
+   <div id="menu_item_end"><a href="/internal/"><img src="/images/menu_intranet.png" alt="[ intranet ]"></a></div>
+   <div id="menu_item_end"><a href="/projects/festival/"><img src="/images/menu_festival.png" alt="[ festival ]"></a></div>
+  </div>
+
+</div>
+
+
+
+<div id="content">
+
+
+    <script src="http://www.google.com/jsapi" type="text/javascript" charset="utf-8"></script>
+    <script type="text/javascript">google.load("jquery", "1.4.2");</script>
+    <script type="text/javascript">
+        $(function () {
+        $("form").submit(function () {
+            $.ajaxSetup({
+              timeout: 0,  
+              cache: false
+            });
+            $.getJSON("http://www.cstr.ed.ac.uk/cgi-bin/cstr/festivalspeak.cgi?callback=?",
+            {voice:$("#voice").val(), UserText: $("#UserText").val(), AJAX: $("#AJAX").val()}, 
+            callback
+            ); 
+            return false;
+        });
+        });
+        function callback(data, status) {
+                $("#player").html("<embed src="+ data["wavurl"] + " autostart=true >");
+        }
+    </script>
+
+
+<h1>Festival Text-to-Speech Online Demo</h1>
+
+    <!-- <form method="POST" action="/cgi-bin/cstr/festivalspeak.cgi">  -->
+    <form method="post" action="" class="formevent" id="formevent" name="formevent"> 
+    <input type="hidden" id="AJAX" name="AJAX" value="on"> 
+    <p><table width="100%" border="0" cellpadding="0" cellspacing="0">
+    
+    <tr>
+      <td>Select a Voice</td>
+      <td>Type the text to synthesise (max 70 chars)</td>
+    </tr>
+
+    <tr>
+      <td>
+        <select id='voice' name='voice'>
+	  <optgroup label="Unit selection method">
+            <option value='awb'>Alan (Edinburgh male)</option>
+	    <option value='nick1'>Nick - 1 (English RP male)</option>
+	    <option value='nick2'>Nick - 2 (English RP male)</option>
+<!--	    <option value='roger'>Roger (English RP male)</option> -->
+	    <option value='nina'>Nina (English RP female)</option>
+      </optgroup>
+	  <optgroup label="HMM-based method (HTS 2011) - Combilex">
+            <option value='hts2010_anna'>Anna (English RP female)</option>
+            <option value='hts2010_fiona'>Fiona (English RP female)</option>
+            <option value='hts2010_christine'>Christine (English RP female)</option>
+	    <option value='hts2010_peter'>Peter (English RP male)</option>
+	    <option value='hts2011_james'>James (English RP male)</option>
+            <option value='hts2010_slt'>SLT (English American female)</option>
+	  </optgroup>
+
+	  <optgroup label="HMM-based method (HTS 2010)">
+	    <option value='hts2010_rjs'>RJS (English RP male)</option>
+	    <option value='hts2010_roger'>Roger (English RP male)</option>
+	    <option value='hts2010_tom'>Tom (English American male)</option>
+	    <option value='hts2010_uvigo3'>UVIGO (Spanish male)</option>		
+	    <option value='hts2010_leo'>Leo (Austrian German male)</option>		
+	  </optgroup>
+          <optgroup label="Diphone (old method)">
+	    <option value='diphone_kal'>KAL (American male)</option>
+	    <option value='diphone_rab'>RAB (British male)</option>
+          </optgroup>
+	</select>
+      </td>
+      <td>
+		
+        <input type=text id="UserText" name="UserText" size="70" maxLength="70" value="Type your text here.">
+		
+      </td>
+      <td>
+	<input type="submit" id="submit" name="submit" value="say it!">
+      </td>	
+    </tr> 
+    
+    </table></p>
+    </form> 
+
+    <div id="player"></div>
+
+    <br> <p> This is an interactive demo of CSTR's "Festival" speech
+    synthesiser, which is software capable of making artificial speech
+    in place of a real human.  Festival is the most complete freeware
+    multilingual, general-purpose synthesis system available.  It is
+    used by numerous research sites and other projects around the
+    world.  Further information is available on the <a
+    href="http://www.cstr.ed.ac.uk/projects/festival/">Festival
+    project page</a>.
+    <p>
+    Synthetic speech can be used anywhere pre-recorded speech can, for
+    example telephone call routing and information lines.  However, it
+    is equally useful where pre-recorded speech <b>cannot</b> be
+    used.  For example, screen-readers for the visually impaired,
+    email/sms reading over the telephone, voice directions for in-car
+    satellite navigation and gaming dialog to name but a few.
+    </p>    
+
+    
+    The following voices are included in this demo at present:
+    <ul>
+    <li> Alan - Scottish male. 
+    <li> Nick - English RP male.
+    <li> Roger - English RP male 
+    <li> Nina - English RP female.
+    <li> KAL  - American male.  
+    <li> SLT  - American female.
+    </ul>
+    
+    More voices are available (with slightly more details) <a href="morevoices.html">here</a>.
+
+    <h3>Further questions...</h3>
+    <p>
+
+    If you have any questions, comments or suggestions, or experience
+    any difficulties using this demo, then please consult the
+    <a href=demofaq.html>FAQ</a> in the first place.  If that doesn't
+    address your query, please mail <script language=javascript>
+        <!--
+         var a = "tts-demo"
+         var b = "cstr.ed.ac.uk"
+         document.write("<a href="+"mail"+"to"+":"+a+"&#64;"+b+">"
+                         +"tts-demo&#64;"+b+"</a>")
+         //-->
+
+  </script>
+    </p>
+    
+    <br>
+
+    <p>
+    <div style="{font-size:8pt; font-style:italic;}">
+    (<b>NOTE: This page is provided for demonstration purposes only.</b>
+
+    Direct use of the CGI synthesis interface is not permitted (computer
+    resources reserved for this demo are limited).  The speech audio
+    produced by this demo is for private, non-commercial use only.
+    For further details on our usage policy, see the <a
+    href="demofaq.html#usage">usage section<a> of the <a href=demofaq.html>FAQ</a>.)
+    </div>
+</div>
+
+<div id="footer">
+  <hr>
+  <center>
+    <a href="http://www.cstr.ed.ac.uk/">CSTR</A>&nbsp;&nbsp;|&nbsp;&nbsp;
+    <a href="http://www.ilcc.inf.ed.ac.uk/">ILCC</A>&nbsp;&nbsp;|&nbsp;&nbsp;
+    <a href="http://www.inf.ed.ac.uk/">Informatics</A>&nbsp;&nbsp;|&nbsp;&nbsp;
+    <a href="http://www.lel.ed.ac.uk/">LEL</A>&nbsp;&nbsp;|&nbsp;&nbsp;
+    <a href="http://www.ppls.ed.ac.uk/">PPLS</A>&nbsp;&nbsp;|&nbsp;&nbsp;
+<!--    <a href="http://www.hcrc.ed.ac.uk/language_at_edinburgh/">Language at Edinburgh</A>&nbsp;&nbsp;|&nbsp;&nbsp;-->
+    <a href="http://www.ed.ac.uk/">University of Edinburgh</A>
+<p>
+The Centre for Speech Technology Research,
+Informatics Forum, 10 Crichton Street, Edinburgh, EH8 9AB<br>
+Tel: +44 131 650 4434, Fax: +44 131 650 6626, email:
+  <script language=javascript>
+      <!--
+      var a = "admin"
+      var b = "cstr"
+      var c = "ed.ac.uk"
+      document.write("<a href=/contact/>"+a+"&#64;"+b+"&#46;"+c+"</a>")
+      //-->
+  </script>
+<br>
+Unless explicitly stated otherwise, all material is copyright &copy; The University of Edinburgh
+  </center>
+</div>
+
+</body>
+</html>
+
