@@ -1,5 +1,7 @@
 # tangramwizard
 
+[![DOI](https://zenodo.org/badge/151397730.svg)](https://zenodo.org/badge/latestdoi/151397730)
+
 Created by Alisdair Tullo and Catherine Crompton.
 
 Requirements:
